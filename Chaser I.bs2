@@ -1,0 +1,74 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+rn VAR WORD 'Random seed
+
+xp VAR BYTE 'Player's X position
+yp VAR BYTE 'Player's Y position
+xb VAR BYTE 'Bug's X position
+yb VAR BYTE 'Bug's Y position
+
+speaker CON 12 'Speaker
+
+dir VAR NIB 'Direction of player's choice
+
+DEBUG "Provide a random seed (0-65535): "
+DEBUGIN DEC5 rn 'Random seed
+
+DEBUG CLS
+
+RANDOM rn
+xb = rn // 58
+yb = rn // 128
+
+'Set player's initial coordinates
+xp = 27
+yp = 63
+
+DEBUG CRSRXY, xb, yb, "B" 'Place the bug
+DEBUG CRSRXY, xp, yp, "P" 'Place the player
+
+endless:
+	DEBUG HOME
+	DEBUGIN dir
+	
+	'Move the player in the provided direction according to $dir
+	DEBUG CRSRXY, xp, yp, " " 
+	IF dir = 1 THEN
+		yp = yp - 1
+	ELSEIF dir = 2 THEN
+		yp = yp + 1
+	ELSEIF dir = 3 THEN
+		xp = xp - 1
+	ELSEIF dir = 4 THEN
+		xp = xp + 1
+	ELSE
+		DEBUG CRSRXY, xp, yp, "P"
+	ENDIF
+	
+	'Move the bug in a random direction 
+	RANDOM rn
+	DEBUG CRSRXY, xb, yb, " "
+	IF rn < 10000 THEN
+		yb = yb - 1
+	ELSEIF rn < 20000 THEN
+		yb = yb + 1
+	ELSEIF rn < 30000 THEN
+		xb = xb - 1
+	ELSEIF rn < 40000 THEN
+		xb = xb + 1 
+	ELSE
+		DEBUG CRSRXY, xb,yb, "B"
+	ENDIF
+
+	DEBUG CRSRXY, xp, yp, "P"
+	DEBUG CRSRXY, xb, yb, "B"
+
+	IF (xb = xp) AND (yb = yp) THEN
+		FREQOUT speaker, 2000, 3000
+		DEBUG CLS, "You win!"
+	ENDIF
+
+GOTO endless
+
+END

@@ -1,0 +1,15 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+FREQOUT 12, 50, 3000
+
+'Patrick M. Howard | Collin Schaefer | Whitney Crawford-Mack
+'Number Guess
+
+rn VAR WORD 'Random number starting off with seed provided by user.
+gn VAR NIB 'Guessed number provided by user.
+
+DEBUG "Enter a number for the random seed (0-65535): " 'Initial Prompt
+DEBUGIN DEC5 rn 'User input
+
+endless:
