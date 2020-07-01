@@ -1,0 +1,36 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'PWM pin, duty, cycles → Pulse with modulation
+'Temperature Sensor → Vout = 0.600 + 0.01 * Tc
+
+refOut CON 7
+compIn VAR IN5
+ADCRes VAR BYTE
+pwrTwo VAR BYTE
+
+temp VAR BYTE
+time VAR BYTE
+time = 0
+main:
+	GOSUB ADconvert
+	DEBUG DEC3 ADCres, CR
+	temp = (ADCres*500)/256-60
+	DEBUG DEC5 time, ", ", DEC3 temp, CR
+	time = time + 1
+GOTO main
+
+ADconvert:
+
+
+	ADCres = 0: pwrTwo = 128
+	repeat:
+		ADCres = ADCres + pwrTwo
+		PWM refOut, ADCres, 5
+		IF compIn = 1 THEN skip1
+		ADCres = ADCres - pwrTwo
+		
+	skip1:
+		pwrTwo = pwrTwo >> 1
+		IF pwrTwo <> 0 THEN repeat
+	RETURN
