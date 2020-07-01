@@ -1,0 +1,44 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+'Collin Schaefer, Patrick Howard, Whitney C-Mack
+'Declare variables
+x VAR WORD
+y VAR WORD
+xr VAR WORD
+yr VAR WORD
+rn VAR WORD
+angle VAR WORD
+range VAR WORD
+
+'Init
+DEBUG "Enter a number between 0 and 65535: " 
+DEBUGIN DEC5 rn
+
+RANDOM rn
+xr= rn // 128
+RANDOM rn
+yr= rn // 56
+DEBUG CLS
+
+endless:
+	DEBUG CRSRXY, xr, yr+1, "*"
+	DEBUG HOME
+	
+	DEBUG "angle(0~65): "
+	DEBUGIN DEC2 angle
+
+	DEBUG " range(0~127): "
+	DEBUGIN DEC3 range
+	DEBUG HOME
+	
+	x=range*COS(angle)/128
+	y=range*SIN(angle)/128
+
+	DEBUG CRSRXY, x, y, "B"
+	
+	DEBUG HOME
+	DEBUG "angle(0~65):    range(0~127): "
+	
+	GOTO endless
+
+END

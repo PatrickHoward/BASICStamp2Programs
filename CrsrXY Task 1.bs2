@@ -1,0 +1,26 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+'Collin Schaefer, Patrick Howard, Whitney C-Mack
+'Declare variables
+x VAR BYTE
+y VAR BYTE
+
+endless:
+
+	DEBUG CLS
+	DEBUG HOME
+
+	DEBUG "Please input an X value from 0 to 128: ", CR
+	DEBUGIN DEC3 x
+
+	DEBUG CR, "Please input a Y value from 0 to 56: ", CR
+	DEBUGIN DEC2 y
+
+	DEBUG CLS
+
+	DEBUG CRSRXY, x, y, "*"
+
+	PAUSE 3000
+	GOTO endless
+
+END

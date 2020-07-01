@@ -1,0 +1,25 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+'Collin Schaefer, Patrick Howard, Whitney C-Mack
+'Declare variables
+x VAR WORD
+y VAR WORD
+r VAR WORD
+
+DEBUGIN DEC5 r
+
+endless:
+	RANDOM r
+	x = r // 128
+
+	RANDOM r
+	y = r // 56
+
+	DEBUG HOME
+
+	DEBUG CRSRXY, x, y, "*"
+
+	PAUSE 50
+	GOTO endless
+
+END
