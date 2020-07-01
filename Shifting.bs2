@@ -1,0 +1,66 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+
+A VAR BYTE
+B VAR BYTE
+
+A = 6
+B = 105
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+PAUSE 1000
+
+A = A << 1
+DEBUG DEC A, " " , BIN A, CR
+
+B = B >> 1
+DEBUG DEC B, " " , BIN B, CR
+
+
+END

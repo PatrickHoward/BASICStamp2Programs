@@ -1,0 +1,19 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'Patrick M. Howard, Collin Schaefer
+'September 20, 2017
+
+Z VAR WORD
+
+Z = 6/2-4*5+7
+
+DEBUG "6/2-4*5+7 in PBasic's precedence: ", SDEC Z, CR
+PAUSE 1000
+
+Z = (6/2)-(4*5) + 7
+
+DEBUG "(6/2)-(4*5)+7 in the real world: ", SDEC Z, CR
+PAUSE 1000
+
+END

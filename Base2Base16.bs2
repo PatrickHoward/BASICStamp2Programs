@@ -1,0 +1,38 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'Patrick M. Howard, Collin Shaefer
+'September 20, 2017
+
+'Declaration of the variables
+A VAR BIT
+B VAR NIB
+C VAR BYTE
+D VAR WORD
+
+'Initialization of variables
+A = 1
+B = 1
+C = 1
+D = 1
+
+ENDLESS:
+
+	'Display totals
+	DEBUG "DECIMAL -> A is: ", DEC A, "   B is ", DEC B, "   C is ", DEC C, "   D is ", DEC D, CR
+	DEBUG "SIGNED DECIMAL -> A is: ", SDEC A, "   B is ", SDEC B, "   C is ", SDEC C, "   D is ", SDEC D, CR
+	DEBUG "HEXDECIMAL -> A is: ", HEX A, "   B is ", HEX B, "   C is ", HEX C, "   D is ", HEX D, CR
+	DEBUG "BIN -> A is: ", BIN A, "   B is ", BIN B, "   C is ", BIN C, "   D is ", BIN D, CR
+		
+
+	'Decrement by 1
+	A = A - 1
+	B = B - 1
+	C = C - 1
+	D = D - 1
+
+	'Repeat loop
+	PAUSE 1000
+	GOTO ENDLESS
+
+END
