@@ -1,0 +1,69 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'Input / Output -- Pin numbers correspond with microcontroller
+LMotor PIN 13
+RMotor PIN 12
+LLinePwr PIN 10
+LLineIn PIN 9
+RLinePwr PIN 7
+RLineIn PIN 8
+
+'Constants and configurations for motors
+LFwdFast CON 1000
+LFwdSlow CON 800
+LStop CON 750
+LRevSlow CON 700
+LRevFast CON 500
+
+RFwdFast CON 500
+RFwdSlow CON 500
+RStop CON 750
+RRevSlow CON 800
+RRevFast CON 1000
+
+'Vars
+lLine VAR WORD 'RCTime value stored in this variable (left)
+rLine VAR WORD 'RCTime value stored in this var (right)
+pulses VAR BYTE 
+
+main:
+	DO 
+		GOSUB Read_Left
+		GOSUB Read_Right
+		PULSOUT LMotor, LFwdSlow
+		PULSOUT RMotor, RFwdSlow
+		PAUSE 20
+	LOOP UNTIL(rLine > 1000 OR lLine > 1000) 
+
+	FOR pulses = 1 TO 42
+		PULSOUT LMotor, LFwdSlow
+		PULSOUT RMotor, RRevSlow
+		PAUSE 20
+ 	NEXT
+
+	DO 
+		GOSUB Read_Left
+		GOSUB Read_Right
+		PULSOUT LMotor, LFwdSlow
+		PULSOUT RMotor, RFwdSlow
+		PAUSE 20
+	LOOP UNTIL(rLine > 500 OR lLine > 500) 
+	
+END
+
+Read_Left:
+	HIGH LLinePwr
+	HIGH LLineIn
+	PAUSE 1
+	RCTIME LLineIn, 1, lLine
+	LOW LlinePwr
+RETURN
+
+Read_Right:
+	HIGH RLinePwr
+	HIGH RLineIn
+	PAUSE 1
+	RCTIME RLineIn, 1, rLine
+	LOW RlinePwr
+RETURN

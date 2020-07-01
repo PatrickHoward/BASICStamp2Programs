@@ -1,0 +1,59 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+' I/O Declarations
+LMotor PIN 13
+RMotor PIN 12
+LfIrOut PIN 4
+LfIrIn PIN 11
+RtIrOut PIN 15
+RtIrIn PIN 14
+
+'Constants and configurations for motors
+LFwdFast CON 1000
+LFwdSlow CON 800
+LStop CON 750
+LRevSlow CON 700
+LRevFast CON 500
+
+RFwdFast CON 500
+RFwdSlow CON 500
+RStop CON 750
+RRevSlow CON 800
+RRevFast CON 1000
+
+'Vars
+pulses VAR BYTE
+leftIR VAR BIT
+rightIR VAR BIT
+
+endless:
+	GOSUB DetectObject
+	IF (leftIR = 1 AND rightIR = 1) THEN
+		PULSOUT LMotor, LFwdFast
+		PULSOUT RMotor, RFwdFast
+	ELSEIF (leftIR = 1 AND rightIR = 0) THEN 
+		PULSOUT LMotor, LFwdFast
+		PULSOUT RMotor, RRevFast
+	ELSEIF (leftIR = 0 AND rightIR = 1) THEN
+		PULSOUT LMotor, LRevFast
+		PULSOUT RMotor, RRevFast
+	ELSE
+		FOR pulses = 1 TO 5
+			PULSOUT LMotor, LFwdFast
+			PULSOUT RMotor, RRevFast
+			PAUSE 20
+ 		NEXT
+	ENDIF
+
+GOTO endless
+
+DetectObject:
+	FREQOUT LfIrOut, 1, 38500
+	FREQOUT RtIrOut, 1, 38500
+	RCTIME LfIrIn, 1, leftIR
+	RCTIME RtIrIn, 1, rightIR
+
+	leftIR = ~leftIR
+	rightIR = ~rightIR
+RETURN
