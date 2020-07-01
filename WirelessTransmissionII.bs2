@@ -1,0 +1,41 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+transmitPin CON 15 'Transmission port
+receivePin CON 14 'Receiving port
+
+baudmode CON 17197 '12000, N, 1 Inverted
+
+rData VAR BYTE 'Received data
+sData VAR BYTE 'Transmited data
+
+endless:
+
+receive:
+	DEBUG CR
+
+recieve_loop:
+	SERIN receivePin, baudmode, [WAIT("zx"),rData]
+	DEBUG DEC3 rData, " "
+	IF rData = 13 THEN 'Seeking for "newline character"
+		GOTO transmit
+	ELSE
+		GOTO recieve_loop
+	ENDIF
+
+transmit:
+	DEBUG CR,">>"
+
+transmit_loop:
+	DEBUGIN STR sData\1
+	SEROUT transmitPin, baudmode, ["zx", STR sData\1]
+	IF sData = 13 THEN
+		GOTO receive
+	ELSE
+		GOTO transmit_loop
+	ENDIF
+
+GOTO endless
+
+END
+
