@@ -1,0 +1,79 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'Patrick M. Howard, Collin Shaefer, Whitney Crawford-Mack | 9/13/2017
+
+'
+DEBUG "Message Initializing"
+
+'Define Constants
+SegA CON 1
+SegB CON 13
+SegC CON 10
+SegD CON 8
+SegE CON 7
+SegF CON 2
+SegG CON 11
+
+'Initializing
+	HIGH SegA 'Turn Segment A LED off
+	HIGH SegB 'Turn Segment B LED off
+	HIGH SegC 'Turn Segment C LED off
+	HIGH SegD 'Turn Segment D LED off
+	HIGH SegE 'Turn Segment E LED off
+	HIGH SegG 'Turn Segment G LED off
+
+'Begin message
+ENDLESS:
+	DEBUG "H"
+	LOW SegF
+	LOW SegB
+	LOW SegG
+	LOW SegE
+	LOW SegC
+	PAUSE 500
+
+	DEBUG "E"
+	LOW SegA
+	LOW SegD
+	HIGH SegB
+	HIGH SegC
+	PAUSE 500
+
+	DEBUG "L" 'Display Frist L
+	HIGH SegA
+	HIGH SegG
+	HIGH SegB
+	HIGH SegC
+	PAUSE 500
+
+	DEBUG "Reset display" 'Blank display for a quarter of a second.
+	HIGH SegF
+	HIGH SegE
+	HIGH SegD
+	PAUSE 100
+
+	DEBUG "L" 'Display Second L
+	LOW SegF
+	LOW SegE
+	LOW SegD
+	PAUSE 500
+
+	DEBUG "O"
+	LOW SegA
+	LOW SegB
+	LOW SegC
+	PAUSE 500
+
+	DEBUG "Reset display"
+	HIGH SegA
+	HIGH SegB
+	HIGH SegC
+	HIGH SegD	
+	HIGH SegE
+	HIGH SegF
+	HIGH SegG
+	PAUSE 500
+	     
+	GOTO ENDLESS
+	

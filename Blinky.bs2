@@ -1,0 +1,19 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+'Patrick M. Howard, Collin Shaefer, 
+
+DEBUG "Blinky Initializing"
+
+'Initializing
+	HIGH 0 	'Turn off LED
+
+ENDLESS:
+	DEBUG CLS, "Blinkiy ON"
+	LOW 0	'Turn on LED
+	PAUSE 1000
+	DEBUG CLS, "Blinky OFF"
+	HIGH 0
+	PAUSE 1000
+	GOTO ENDLESS 'Repeat "Blinky" process
+	END
