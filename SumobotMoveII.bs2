@@ -1,0 +1,14 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+left CON 13
+right CON 12
+
+DO 
+PULSOUT left, 750
+PULSOUT right, 750
+PAUSE 20
+
+LOOP WHILE (1=1)
+
+END

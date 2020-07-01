@@ -1,0 +1,55 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+left CON 13
+right CON 12
+
+x VAR BYTE
+
+FOR x = 1 TO 112 'Forward
+	PULSOUT left, 800
+	PULSOUT right, 700
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 20'Rotate
+	PULSOUT left, 800
+	PULSOUT right, 800
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 82 'Forward
+	PULSOUT left, 800
+	PULSOUT right, 700
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 20 'Rotate
+	PULSOUT left, 800
+	PULSOUT right, 800
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 112 'Forward
+	PULSOUT left, 800
+	PULSOUT right, 700
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 20 'Rotate
+	PULSOUT left, 800
+	PULSOUT right, 800
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 82 'Forward
+	PULSOUT left, 800
+	PULSOUT right, 700
+	PAUSE 20
+NEXT
+
+FOR x = 1 TO 100 'Victory Dance
+	PULSOUT left, 800
+	PULSOUT right, 800
+	PAUSE 20
+NEXT

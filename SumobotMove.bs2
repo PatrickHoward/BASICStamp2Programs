@@ -1,0 +1,11 @@
+'{$STAMP BS2}
+'{$PBASIC 2.5}
+
+light CON 3
+x VAR NIB
+
+DO
+PULSOUT light, 5000
+x = x + 1
+PAUSE 20
+LOOP WHILE(x <= 100)
